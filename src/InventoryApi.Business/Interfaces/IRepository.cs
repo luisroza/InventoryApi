@@ -1,7 +1,7 @@
-﻿using InventoryApi.Business.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using InventoryApi.Business.Models;
 
 namespace InventoryApi.Business.Interfaces
 {

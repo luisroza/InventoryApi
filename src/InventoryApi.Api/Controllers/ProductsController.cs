@@ -13,16 +13,12 @@ namespace InventoryApi.WebApp.Controllers
     [Route("api/products")]
     public class ProductsController : BaseController
     {
-        private readonly IProductRepository _productRepository;
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-        public ProductsController(INotifier notifier, 
-                                  IProductRepository productRepository, 
-                                  IProductService productService, 
-                                  IMapper mapper) : base(notifier)
+        public ProductsController(IProductService productService, INotifier notifier,
+                                    IMapper mapper) : base(notifier)
         {
-            _productRepository = productRepository;
             _productService = productService;
             _mapper = mapper;
         }
@@ -30,7 +26,7 @@ namespace InventoryApi.WebApp.Controllers
         [HttpGet]
         public async Task<IEnumerable<ProductViewModel>> GetAll()
         {
-            return _mapper.Map<IEnumerable<ProductViewModel>>(await _productRepository.GetProductsLocations());
+            return _mapper.Map<IEnumerable<ProductViewModel>>(await _productService.GetProductsLocations());
         }
 
         [HttpGet("{id:guid}")]
@@ -90,7 +86,7 @@ namespace InventoryApi.WebApp.Controllers
 
         private async Task<ProductViewModel> GetProduct(Guid id)
         {
-            return _mapper.Map<ProductViewModel>(await _productRepository.GetProduct(id));
+            return _mapper.Map<ProductViewModel>(await _productService.GetProduct(id));
         }
     }
 }

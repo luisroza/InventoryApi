@@ -14,16 +14,12 @@ namespace InventoryApi.WebApp.Controllers
     [Route("api/locations")]
     public class LocationController : BaseController
     {
-        private readonly ILocationRepository _locationRepository;
         private readonly ILocationService _locationService;
         private readonly IMapper _mapper;
 
-        public LocationController(ILocationRepository supplierRepository,
-                                    ILocationService supplierService,
-                                    IMapper mapper,
+        public LocationController(ILocationService supplierService, IMapper mapper,
                                     INotifier notifier) : base(notifier)
         {
-            _locationRepository = supplierRepository;
             _locationService = supplierService;
             _mapper = mapper;
         }
@@ -32,7 +28,7 @@ namespace InventoryApi.WebApp.Controllers
         [HttpGet]
         public async Task<IEnumerable<LocationViewModel>> GetAll()
         {
-            return _mapper.Map<IEnumerable<LocationViewModel>>(await _locationRepository.GetAll());
+            return _mapper.Map<IEnumerable<LocationViewModel>>(await _locationService.GetAll());
         }
 
         [HttpGet("{id:guid}")]
@@ -60,7 +56,7 @@ namespace InventoryApi.WebApp.Controllers
         {
             if (id != locationViewModel.Id)
             {
-                NotifyError("Id do not match with the one used in the query");
+                NotifyError("Id does not match with the one used in the query");
                 return CustomResponse(locationViewModel);
             }
 
@@ -85,7 +81,7 @@ namespace InventoryApi.WebApp.Controllers
 
         private async Task<LocationViewModel> GetSupplierProducts(Guid id)
         {
-            return _mapper.Map<LocationViewModel>(await _locationRepository.GetLocationProducts(id));
+            return _mapper.Map<LocationViewModel>(await _locationService.GetLocationProducts(id));
         }
     }
 }

@@ -1,21 +1,19 @@
 ﻿using InventoryApi.Business.Interfaces;
 using InventoryApi.Business.Models;
+using InventoryApi.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
-using InventoryApi.Data.Context;
 
 namespace InventoryApi.Data.Repository
 {
     public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, new()
     {
-        protected readonly InventoryDbContext Db;
+        protected readonly InventoryContext Db;
         protected readonly DbSet<TEntity> DbSet;
 
-        protected Repository(InventoryDbContext db)
+        protected Repository(InventoryContext db)
         {
             Db = db;
             DbSet = db.Set<TEntity>();

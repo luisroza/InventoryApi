@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InventoryApi.Data.Context
 {
-    public class InventoryDbContext : DbContext
+    public class InventoryContext : DbContext
     {
-        public InventoryDbContext(DbContextOptions<InventoryDbContext> options) : base(options) { }
+        public InventoryContext(DbContextOptions<InventoryContext> options) : base(options) { }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Location> Locations { get; set; }
@@ -21,7 +21,7 @@ namespace InventoryApi.Data.Context
                     .Where(p => p.ClrType == typeof(string))))
                 property.SetColumnType("varchar(100)");
 
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(InventoryDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(InventoryContext).Assembly);
 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
 

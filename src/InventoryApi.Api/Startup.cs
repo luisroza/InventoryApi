@@ -1,6 +1,5 @@
 using InventoryApi.Data.Context;
 using InventoryApi.WebApp.Configuration;
-using InventoryApi.WebApp.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,10 +26,7 @@ namespace InventoryApi.WebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<InventoryDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<InventoryContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSwaggerGen(options =>

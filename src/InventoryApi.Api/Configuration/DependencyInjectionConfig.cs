@@ -11,7 +11,7 @@ namespace InventoryApi.WebApp.Configuration
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
-            services.AddScoped<InventoryDbContext>();
+            services.AddScoped<InventoryContext>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ILocationRepository, LocationRepository>();
 

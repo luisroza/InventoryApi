@@ -11,7 +11,7 @@ namespace InventoryApi.Data.Repository
 {
     public class ProductRepository : Repository<Product>, IProductRepository
     {
-        public ProductRepository(InventoryDbContext context) : base(context) { }
+        public ProductRepository(InventoryContext context) : base(context) { }
 
         public async Task<Product> GetProduct(Guid id)
         {

@@ -2,6 +2,7 @@
 using InventoryApi.Business.Models;
 using InventoryApi.Business.Models.Validations;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -58,6 +59,21 @@ namespace InventoryApi.Business.Services
 
             await _locationRepository.Delete(id);
             return true;
+        }
+
+        public async Task<IEnumerable<Location>> GetAll()
+        {
+            return await _locationRepository.GetAll();
+        }
+
+        public async Task<Location> GetLocation(Guid id)
+        {
+            return await _locationRepository.GetLocation(id);
+        }
+
+        public async Task<Location> GetLocationProducts(Guid id)
+        {
+            return await _locationRepository.GetLocationProducts(id);
         }
 
         public void Dispose()

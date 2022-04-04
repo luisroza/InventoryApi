@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InventoryApi.Data.Migrations
 {
-    [DbContext(typeof(InventoryDbContext))]
+    [DbContext(typeof(InventoryContext))]
     partial class InventoryDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

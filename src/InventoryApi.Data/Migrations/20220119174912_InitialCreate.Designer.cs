@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InventoryApi.Data.Migrations
 {
-    [DbContext(typeof(InventoryDbContext))]
+    [DbContext(typeof(InventoryContext))]
     [Migration("20220119174912_InitialCreate")]
     partial class InitialCreate
     {

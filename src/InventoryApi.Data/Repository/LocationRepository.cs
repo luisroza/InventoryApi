@@ -9,7 +9,7 @@ namespace InventoryApi.Data.Repository
 {
     public class LocationRepository : Repository<Location>, ILocationRepository
     {
-        public LocationRepository(InventoryDbContext context) : base(context)
+        public LocationRepository(InventoryContext context) : base(context)
         {
         }
 
