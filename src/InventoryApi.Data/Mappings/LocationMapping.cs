@@ -18,7 +18,6 @@ namespace InventoryApi.Data.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(300)");
 
-            // 1 : N => Location : Products
             builder.HasMany(f => f.Products)
                 .WithOne(p => p.Location)
                 .HasForeignKey(p => p.LocationId);
